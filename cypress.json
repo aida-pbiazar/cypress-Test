@@ -1,0 +1,8 @@
+{
+    "video": true,
+    "screenshotsFolder" : "cypress/videos",
+    "baseUrl" : "https://www.bayzat.com",
+    "defaultCommandTimeout" : 10000,
+    "pageLoadTimeout" : 100000
+}
+
