@@ -2,7 +2,7 @@ describe("e2e Test", () => {
 
   //opening url, loading json data from fixtures, and login are in before function
   before(function () {
-    // open baseURL declared in cypress.json file
+    //baseURL is declared in cypress.json file
     cy.visit("/");
 
     cy.fixture('users.json').as('data')
@@ -24,11 +24,11 @@ describe("e2e Test", () => {
     })
   })
 
-  it("Add and Delete employee end to end scenario with assertions", () => {
+  it("Add and Delete employee end to end scenario till logout with assertions", () => {
     //go to view team page
     cy.get('a[data-external-id="view-team-link"]').click()
     // verify in employee table, name column and hire date exist for employees
-    // I assert the elements of table for employees as there might be no employee as data here then my test will fail
+    // I assert the static elements of table for employees as there might be no employee as data here then my test will fail
     cy.get('table').contains('th', 'Name').should('be.visible')
     cy.get('table').contains('th', 'Hire Date').should('be.visible')
 
@@ -50,7 +50,7 @@ describe("e2e Test", () => {
     //verify new employee added exists in view team page
     cy.contains(firstNameVal + " " + lastNameVal, { matchCase: false })
 
-    //search for new employee added
+    //search for new employee added from place holder
     cy.get('input[placeholder ="Search by employee name"]').type(firstNameVal + " " + lastNameVal)
     cy.wait(20000)
     //verify new employee exists in the filtered result page
@@ -84,8 +84,9 @@ function generateRandomString(length) {
 }
 
 function addEmployee(firstNameVal, lastNameVal) {
-
+  //got to add employee link
   cy.get('a[data-external-id="add-employees-link"]').click()
+  //choose create new employee
   cy.get('a[href*="/enterprise/dashboard/employees/create"]').click()
 
   //create random firstname, lastname, work email for add employee
